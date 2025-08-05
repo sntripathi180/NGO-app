@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {assets}  from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -6,7 +6,10 @@ const Footer = () => {
     const navigate = useNavigate();
   const [token, setToken] = useState(false)
 
-
+useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(!!storedToken);
+  }, []);
   return (
    <div className="flex items-center justify-between py-5 mb-5  border-t border-t-gray-400 text-sm text-white" >
       <ul className=" flex items-center gap-25">

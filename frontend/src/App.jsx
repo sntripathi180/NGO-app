@@ -9,6 +9,8 @@ import AboutUs from "./pages/AboutUs";
 import ErrorPage from "./pages/ErrorPage";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Task from "./pages/Task";
+import Logout from "./pages/UserLogout";
 
 function App() {
   return (
@@ -20,9 +22,11 @@ function App() {
         <Route path="/volunter" element={<RegistrationForm />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="*" element={<ErrorPage />} />
-        <Route path="/user-login" element={<Login/>} />
+        <Route path="/user-login" element={<Login />} />
+        <Route path="/task" element={<Task />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
