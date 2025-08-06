@@ -1,15 +1,17 @@
-import React, { useState,useEffect } from "react";
-import {assets}  from "../assets/assets";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import { useNavigate, NavLink, Link } from "react-router-dom";
+import { assets } from "../assets/assets";
 
 const Footer = () => {
+  const { isAuthenticated, logout } = useContext(AuthContext);
     const navigate = useNavigate();
-  const [token, setToken] = useState(false)
-
-useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(!!storedToken);
-  }, []);
+  
+   
+    const handleLogout = () => {
+      logout();
+      navigate("/");
+    };
   return (
    <div className="flex items-center justify-between py-5 mb-5  border-t border-t-gray-400 text-sm text-white" >
       <ul className=" flex items-center gap-25">
@@ -37,7 +39,7 @@ useEffect(() => {
         </NavLink>
       </ul>
      <div className="flex items-center gap-4">
-      {token ?
+      {isAuthenticated ?
        <>
       </>:
       <button
