@@ -10,7 +10,7 @@ const Admin = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const Admin = () => {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/v1/admin/login`, { email, password });
-      console.log("resonse of admin",response)
+     
       if (response.status === 200) {
         const { token, user } = response.data.data;
         if (user.role !== "admin") {
@@ -26,7 +26,7 @@ const Admin = () => {
           return;
         }
         login(token);
-        navigate("/admin/dashboard");
+        navigate("/dashboard");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");

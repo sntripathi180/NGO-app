@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserDataContext } from "../Context/user.context";
-import { AuthContext } from "../Context/AuthContext"; // Import your AuthContext
+import { AuthContext } from "../Context/AuthContext"; 
 import axios from "axios";
 
 const RegistrationForm = () => {
@@ -9,12 +9,14 @@ const RegistrationForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullname, setFullname] = useState("");
+  const [error, setError] = useState("");
 
   const { user, setUser } = useContext(UserDataContext);
-  const { login } = useContext(AuthContext); // Destructure login function
+  const { login } = useContext(AuthContext); 
 
   const submitData = async (e) => {
     e.preventDefault();
+    setError("");
     const newUser = {
       fullname,
       email,
@@ -42,6 +44,7 @@ const RegistrationForm = () => {
         navigate("/task");
       }
     } catch (error) {
+      setError(error.response?.data?.message || "Registration failed");
       console.error("Registration failed:", error);
     
     }
@@ -56,6 +59,7 @@ const RegistrationForm = () => {
     <div className="text-white flex items-center justify-between flex-col m-12 text-center">
       <h1 className="font-bold text-cyan-400 italic">No one has ever become poor by giving.</h1>
       <form className="p-4" onSubmit={submitData}>
+         {error && <p className="text-red-500">{error}</p>}
         <h3 className="p-4">What's your Name</h3>
         <input
           type="text"

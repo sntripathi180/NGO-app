@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Task from "./pages/Task";
 import Logout from "./pages/UserLogout";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/user-login" element={<Login />} />
         <Route path="/task" element={<Task />} />
         <Route path="/logout" element={<Logout />} />
+       <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
       <Footer />
     </div>
